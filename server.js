@@ -47,7 +47,7 @@ app.post("/verify-otp", async (req, res) => {
       });
 
     if (result.status === "approved") {
-      await axios.post("https://script.google.com/macros/s/AKfycbzRP6WVw7zgw7-mrX4GT6jyVjngmzd1L4wB6Ca67h3DZONxJ9lfFI6o9rZ5j4IFbPXE/exec", {
+await axios.post("https://script.google.com/macros/s/AKfycbzRP6WVw7zgw7-mrX4GT6jyVjngmzd1L4wB6Ca67h3DZONxJ9lfFI6o9rZ5j4IFbPXE/exec", {
   phone: phone,
   source: "Shop"
 });
