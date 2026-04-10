@@ -51,11 +51,14 @@ app.post("/verify-otp", async (req, res) => {
       });
 
     if (result.status === "approved") {
-await axios.post("https://script.google.com/macros/s/AKfycbwXh_DO2VrQnC6T5ypVvQzlPLUkknYMH4E4yhjDmALu4LtbO9PYr-2vqQQhqYD_yp4G/exec", {
+  const gsResponse = await axios.post("https://script.google.com/macros/s/AKfycbwXh_DO2VrQnC6T5ypVvQzlPLUkknYMH4E4yhjDmALu4LtbO9PYr-2vqQQhqYD_yp4G/exec", {
   phone: phone,
   source: "Shop",
   referralEmployeeID: referralEmployeeID || ""
 });
+
+    console.log("Google Sheet response:", gsResponse.data);
+
       return res.json({ success: true });
     }
 
