@@ -38,7 +38,7 @@ app.post("/send-otp", async (req, res) => {
 // 驗證驗證碼
 app.post("/verify-otp", async (req, res) => {
   try {
-    const { phone, code } = req.body;
+    const { phone, code, referralEmployeeID } = req.body;
 
     const result = await client.verify.v2
       .services(VERIFY_SERVICE_SID)
@@ -48,9 +48,10 @@ app.post("/verify-otp", async (req, res) => {
       });
 
     if (result.status === "approved") {
-await axios.post("https://script.google.com/macros/s/AKfycbzRP6WVw7zgw7-mrX4GT6jyVjngmzd1L4wB6Ca67h3DZONxJ9lfFI6o9rZ5j4IFbPXE/exec", {
+await axios.post("https://script.google.com/macros/s/AKfycbwXh_DO2VrQnC6T5ypVvQzlPLUkknYMH4E4yhjDmALu4LtbO9PYr-2vqQQhqYD_yp4G/exec", {
   phone: phone,
-  source: "Shop"
+  source: "Shop",
+  referralEmployeeID: referralEmployeeID || ""
 });
       return res.json({ success: true });
     }
