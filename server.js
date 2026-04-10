@@ -40,6 +40,9 @@ app.post("/verify-otp", async (req, res) => {
   try {
     const { phone, code, referralEmployeeID } = req.body;
 
+    console.log("req.body:", req.body);
+    console.log("referralEmployeeID:", referralEmployeeID);
+
     const result = await client.verify.v2
       .services(VERIFY_SERVICE_SID)
       .verificationChecks.create({
